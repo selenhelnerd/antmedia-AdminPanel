@@ -1,10 +1,20 @@
-import React from 'react'
+// src/App.tsx
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage   from './components/AdminPanel/Login/LoginPage';
+import AdminPanel  from './components/AdminPanel/AdminPanel';
 
-import AdminPanel from '/home/selen/Masaüstü/antmedia-admin-panel/src/components/AdminPanel/AdminPanel.tsx';
+const App: React.FC = () => (
+ 
+    <Routes>
+      <Route path="/"        element={<Navigate to="/login" replace />} />
+      <Route path="/login"   element={<LoginPage />} />
+      {/* dashboard altındaki tüm yollar AdminPanel içinde */}
+      debugger;
+      <Route path="/dashboard/*" element={<AdminPanel />} />
+      
+    </Routes>
+ 
+);
 
-
-function App() {
-  return <AdminPanel />
-}
-
-export default App
+export default App;

@@ -1,90 +1,133 @@
 // src/components/AdminPanel/Streams/EditStreamModal.tsx
 
 import React from 'react'
+import { Field, ErrorMessage } from 'formik'
+import FormikModal from '../../common/FormikModal'
 import { Stream } from '../../../types/stream'
+import { streamSchema } from './validation'
 
 interface EditStreamModalProps {
-  /** Modal görünürlük durumu */
   show: boolean
-  /** Düzenlenecek yayın nesnesi */
   selectedStream: Stream | null
-  /** Seçili yayın güncellendiğinde çağrılan callback */
-  onUpdate: (id: number, data: Partial<Stream>) => void
-  /** Modal kapatma callback */
+  onUpdate: (id: number, data: Stream) => void
   onClose: () => void
-  /** Seçili yayın state setter (form içi değişiklikler için) */
-  setSelectedStream: (stream: Stream | null) => void
 }
 
 const EditStreamModal: React.FC<EditStreamModalProps> = ({
   show,
   selectedStream,
-  setSelectedStream,
   onUpdate,
   onClose,
 }) => {
   if (!show || !selectedStream) return null
 
+  const initialValues: Stream = selectedStream
+
+  const handleSubmit = (
+    values: Stream,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+  ) => {
+    onUpdate(selectedStream.id, values)
+    setSubmitting(false)
+    onClose()
+  }
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Yayın Düzenle</h3>
-
-        <div className="space-y-4">
-          {/* Yayın Adı */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Yayın Adı
-            </label>
-            <input
-              type="text"
-              placeholder="Yayın adını girin"
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedStream.name}
-              onChange={e =>
-                setSelectedStream({ ...selectedStream, name: e.target.value })
-              }
-            />
-          </div>
-
-          {/* Kalite */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Kalite
-            </label>
-            <select
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={selectedStream.quality}
-              onChange={e =>
-                setSelectedStream({ ...selectedStream, quality: e.target.value })
-              }
-            >
-              <option value="1080p">1080p</option>
-              <option value="720p">720p</option>
-              <option value="480p">480p</option>
-              <option value="360p">360p</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="flex justify-end space-x-3 mt-6">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-gray-700 border rounded-lg hover:bg-gray-50"
-          >
-            İptal
-          </button>
-          <button
-            onClick={() => {
-              onUpdate(selectedStream.id, selectedStream)
-            }}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Güncelle
-          </button>
-        </div>
+    <FormikModal<Stream>
+      title="Yayın Düzenle"
+      initialValues={initialValues}
+      validationSchema={streamSchema}
+      isOpen={show}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+      {/* Yayın Adı */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Yayın Adı
+        </label>
+        <Field
+          name="name"
+          type="text"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <ErrorMessage
+          name="name"
+          component="p"
+          className="text-red-600 text-sm mt-1"
+        />
       </div>
-    </div>
+
+      {/* Açıklama */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Açıklama
+        </label>
+        <Field
+          as="textarea"
+          name="description"
+          rows={3}
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <ErrorMessage
+          name="description"
+          component="p"
+          className="text-red-600 text-sm mt-1"
+        />
+      </div>
+
+      {/* Kalite */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Kalite
+        </label>
+        <Field
+          as="select"
+          name="quality"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          {['1080p', '720p', '480p', '360p'].map(q => (
+            <option key={q} value={q}>
+              {q}
+            </option>
+          ))}
+        </Field>
+        <ErrorMessage
+          name="quality"
+          component="p"
+          className="text-red-600 text-sm mt-1"
+        />
+      </div>
+
+      {/* Bitrate */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Bitrate (kbps)
+        </label>
+        <Field
+          name="bitrate"
+          type="number"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <ErrorMessage
+          name="bitrate"
+          component="p"
+          className="text-red-600 text-sm mt-1"
+        />
+      </div>
+
+      {/* Herkese Açık */}
+      <div className="flex items-center">
+        <Field
+          type="checkbox"
+          name="isPublic"
+          className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+        />
+        <label htmlFor="isPublic" className="text-sm text-gray-700">
+          Herkese açık yayın
+        </label>
+      </div>
+    </FormikModal>
   )
 }
 
