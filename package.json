@@ -24,9 +24,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "gen:api": "openapi-generator-cli generate -i openapi.json -g typescript-axios -o src/api-client --skip-validate-spec",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gen:api": "node scripts/gen-api.js"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.21.2",
+    "openapi-typescript-codegen": "^0.29.0",
+    "postman-to-openapi": "^3.0.1"
   }
 }

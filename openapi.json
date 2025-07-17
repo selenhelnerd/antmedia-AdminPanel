@@ -1,0 +1,5498 @@
+openapi: 3.0.0
+info:
+  title: Ant Media Server REST API Reference
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+tags:
+  - name: cluster
+  - name: cluster > deleteNode
+  - name: cluster > deleteNode > {id}
+  - name: cluster > node-count
+  - name: cluster > nodes
+  - name: cluster > nodes > {offset}
+  - name: cluster > nodes > {offset} > {size}
+  - name: v2
+  - name: v2 > admin-status
+  - name: v2 > applications
+  - name: v2 > applications > live-streams
+  - name: v2 > applications > live-streams > {appname}
+  - name: v2 > applications > settings
+  - name: v2 > applications > settings > {appname}
+  - name: v2 > applications > {appName}
+  - name: v2 > applications > {appname}
+  - name: v2 > applications > {appname} > reset
+  - name: v2 > applications-info
+  - name: v2 > authentication-status
+  - name: v2 > broadcasts
+  - name: v2 > broadcasts > active-live-stream-count
+  - name: v2 > broadcasts > bulk
+  - name: v2 > broadcasts > conference-rooms
+  - name: v2 > broadcasts > conference-rooms > list
+  - name: v2 > broadcasts > conference-rooms > list > {offset}
+  - name: v2 > broadcasts > conference-rooms > list > {offset} > {size}
+  - name: v2 > broadcasts > conference-rooms > {roomId}
+  - name: v2 > broadcasts > conference-rooms > {room_id}
+  - name: v2 > broadcasts > conference-rooms > {room_id} > add
+  - name: v2 > broadcasts > conference-rooms > {room_id} > delete
+  - name: v2 > broadcasts > conference-rooms > {room_id} > room-info
+  - name: v2 > broadcasts > conference-rooms > {room_id} > {streamId}
+  - name: v2 > broadcasts > count
+  - name: v2 > broadcasts > count > {search}
+  - name: v2 > broadcasts > create
+  - name: v2 > broadcasts > filter-list
+  - name: v2 > broadcasts > filter-list > {offset}
+  - name: v2 > broadcasts > filter-list > {offset} > {size}
+  - name: v2 > broadcasts > filter-list > {offset} > {size} > {type}
+  - name: v2 > broadcasts > import-to-stalker
+  - name: v2 > broadcasts > list
+  - name: v2 > broadcasts > list > {offset}
+  - name: v2 > broadcasts > list > {offset} > {size}
+  - name: v2 > broadcasts > onvif-devices
+  - name: v2 > broadcasts > total-broadcast-statistics
+  - name: v2 > broadcasts > validate-token
+  - name: v2 > broadcasts > webrtc-receive-low-level-stats
+  - name: v2 > broadcasts > webrtc-send-low-level-stats
+  - name: v2 > broadcasts > webrtc-viewers
+  - name: v2 > broadcasts > webrtc-viewers > list
+  - name: v2 > broadcasts > webrtc-viewers > list > {offset}
+  - name: v2 > broadcasts > webrtc-viewers > list > {offset} > {size}
+  - name: v2 > broadcasts > webrtc-viewers > {webrtc-viewer-id}
+  - name: v2 > broadcasts > webrtc-viewers > {webrtc-viewer-id} > stop
+  - name: v2 > broadcasts > {id}
+  - name: v2 > broadcasts > {id} > broadcast-statistics
+  - name: v2 > broadcasts > {id} > data
+  - name: v2 > broadcasts > {id} > detections
+  - name: v2 > broadcasts > {id} > detections > count
+  - name: v2 > broadcasts > {id} > detections > {offset}
+  - name: v2 > broadcasts > {id} > detections > {offset} > {size}
+  - name: v2 > broadcasts > {id} > endpoint
+  - name: v2 > broadcasts > {id} > ip-camera
+  - name: v2 > broadcasts > {id} > ip-camera > device-profiles
+  - name: v2 > broadcasts > {id} > ip-camera > move
+  - name: v2 > broadcasts > {id} > ip-camera > stop-move
+  - name: v2 > broadcasts > {id} > jwt-token
+  - name: v2 > broadcasts > {id} > recording
+  - name: v2 > broadcasts > {id} > recording > {recording-status}
+  - name: v2 > broadcasts > {id} > rtmp-endpoint
+  - name: v2 > broadcasts > {id} > rtmp-to-webrtc-stats
+  - name: v2 > broadcasts > {id} > start
+  - name: v2 > broadcasts > {id} > stop
+  - name: v2 > broadcasts > {id} > stream-info
+  - name: v2 > broadcasts > {id} > subscriber-stats
+  - name: v2 > broadcasts > {id} > subscriber-stats > list
+  - name: v2 > broadcasts > {id} > subscriber-stats > list > {offset}
+  - name: v2 > broadcasts > {id} > subscriber-stats > list > {offset} > {size}
+  - name: v2 > broadcasts > {id} > subscribers
+  - name: v2 > broadcasts > {id} > subscribers > list
+  - name: v2 > broadcasts > {id} > subscribers > list > {offset}
+  - name: v2 > broadcasts > {id} > subscribers > list > {offset} > {size}
+  - name: v2 > broadcasts > {id} > subscribers > {sid}
+  - name: v2 > broadcasts > {id} > subtrack
+  - name: v2 > broadcasts > {id} > token
+  - name: v2 > broadcasts > {id} > tokens
+  - name: v2 > broadcasts > {id} > tokens > list
+  - name: v2 > broadcasts > {id} > tokens > list > {offset}
+  - name: v2 > broadcasts > {id} > tokens > list > {offset} > {size}
+  - name: v2 > broadcasts > {streamId}
+  - name: v2 > broadcasts > {streamId} > ip-camera-error
+  - name: v2 > broadcasts > {stream_id}
+  - name: v2 > broadcasts > {stream_id} > webrtc-client-stats
+  - name: v2 > broadcasts > {stream_id} > webrtc-client-stats > {offset}
+  - name: v2 > broadcasts > {stream_id} > webrtc-client-stats > {offset} > {size}
+  - name: v2 > cluster-mode-status
+  - name: v2 > cluster
+  - name: v2 > cluster > node-count
+  - name: v2 > cluster > node
+  - name: v2 > cluster > node > {id}
+  - name: v2 > cluster > nodes
+  - name: v2 > cluster > nodes > {offset}
+  - name: v2 > cluster > nodes > {offset} > {size}
+  - name: v2 > cpu-status
+  - name: v2 > enterprise-edition
+  - name: v2 > file-system-status
+  - name: v2 > first-login-status
+  - name: v2 > gpu-status
+  - name: v2 > heap-dump
+  - name: v2 > jvm-memory-status
+  - name: v2 > last-licence-status
+  - name: v2 > licence-status
+  - name: v2 > live-clients-size
+  - name: v2 > liveness
+  - name: v2 > log-file
+  - name: v2 > log-file > {offsetSize}
+  - name: v2 > log-file > {offsetSize} > {charSize}
+  - name: v2 > server-settings
+  - name: v2 > server-time
+  - name: v2 > shutdown-proper-status
+  - name: v2 > shutdown-properly
+  - name: v2 > ssl-settings
+  - name: v2 > support
+  - name: v2 > support > request
+  - name: v2 > system-memory-status
+  - name: v2 > system-resources
+  - name: v2 > system-status
+  - name: v2 > thread-dump
+  - name: v2 > threads
+  - name: v2 > user-list
+  - name: v2 > users
+  - name: v2 > users > authenticate
+  - name: v2 > users > initial
+  - name: v2 > users > password
+  - name: v2 > users > {usermail}
+  - name: v2 > users > {usermail} > blocked
+  - name: v2 > users > {username}
+  - name: v2 > version
+  - name: v2 > vods
+  - name: v2 > vods > bulk
+  - name: v2 > vods > count
+  - name: v2 > vods > count > {search}
+  - name: v2 > vods > create
+  - name: v2 > vods > directory
+  - name: v2 > vods > import-to-stalker
+  - name: v2 > vods > list
+  - name: v2 > vods > list > {offset}
+  - name: v2 > vods > list > {offset} > {size}
+  - name: v2 > vods > synch-user-vod-list
+  - name: v2 > vods > {id}
+paths:
+  /cluster/deleteNode/{id}:
+    get:
+      tags:
+        - cluster > deleteNode > {id}
+      summary: delete Node
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /cluster/node-count:
+    get:
+      tags:
+        - cluster > node-count
+      summary: get Node Count
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: '*/*'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: '*/*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                  "number": "<long>"
+                }
+  /cluster/nodes/{offset}/{size}:
+    get:
+      tags:
+        - cluster > nodes > {offset} > {size}
+      summary: get Node List
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: <string>
+                  ip: <string>
+                  lastUpdateTime: <long>
+                  memory: <string>
+                  cpu: <string>
+                  status: <string>
+                - id: <string>
+                  ip: <string>
+                  lastUpdateTime: <long>
+                  memory: <string>
+                  cpu: <string>
+                  status: <string>
+  /v2/admin-status:
+    get:
+      tags:
+        - v2 > admin-status
+      summary: >-
+        Returns whether current user is admin or not. If user is admin, it can
+        call POST/PUT/DELETE methods
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications/live-streams/{appname}:
+    get:
+      tags:
+        - v2 > applications > live-streams > {appname}
+      summary: >-
+        Returns live streams in the specified application. Retrieves broadcast
+        names and the consumer size.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appname
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications/settings/{appname}:
+    get:
+      tags:
+        - v2 > applications > settings > {appname}
+      summary: Returns the specified application settings
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appname
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    post:
+      tags:
+        - v2 > applications > settings > {appname}
+      summary: >-
+        Changes the application settings with the given settings. Null fields
+        will be set to default values.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                remoteAllowedCIDR: <string>
+                mp4MuxingEnabled: <boolean>
+                webMMuxingEnabled: <boolean>
+                addDateTimeToMp4FileName: <boolean>
+                fileNameFormat: <string>
+                hlsMuxingEnabled: <boolean>
+                encoderSettingsString: <string>
+                signalingEnabled: <boolean>
+                signalingAddress: <string>
+                hlsListSize: <string>
+                hlsTime: <string>
+                uploadExtensionsToS3: <integer>
+                s3StorageClass: <string>
+                endpointHealthCheckPeriodMs: <integer>
+                endpointRepublishLimit: <integer>
+                dashSegDuration: <string>
+                dashFragmentDuration: <string>
+                targetLatency: <string>
+                dashWindowSize: <string>
+                dashExtraWindowSize: <string>
+                islLDashEnabled: <boolean>
+                islLHLSEnabled: <boolean>
+                hlsEnabledViaDash: <boolean>
+                useTimelineDashMuxing: <boolean>
+                webRTCEnabled: <boolean>
+                useOriginalWebRTCEnabled: <boolean>
+                deleteHLSFilesOnEnded: <boolean>
+                deleteDASHFilesOnEnded: <boolean>
+                tokenHashSecret: <string>
+                hashControlPublishEnabled: <boolean>
+                hashControlPlayEnabled: <boolean>
+                listenerHookURL: <string>
+                acceptOnlyStreamsInDataStore: <boolean>
+                acceptOnlyRoomsInDataStore: <boolean>
+                publishTokenControlEnabled: <boolean>
+                playTokenControlEnabled: <boolean>
+                timeTokenSubscriberOnly: <boolean>
+                enableTimeTokenForPlay: <boolean>
+                enableTimeTokenForPublish: <boolean>
+                timeTokenPeriod: <integer>
+                hlsPlayListType: <string>
+                vodFolder: <string>
+                previewOverwrite: <boolean>
+                stalkerDBServer: <string>
+                stalkerDBUsername: <string>
+                stalkerDBPassword: <string>
+                objectDetectionEnabled: <boolean>
+                createPreviewPeriod: <integer>
+                restartStreamFetcherPeriod: <integer>
+                startStreamFetcherAutomatically: <boolean>
+                streamFetcherBufferTime: <integer>
+                hlsflags: <string>
+                mySqlClientPath: <string>
+                muxerFinishScript: <string>
+                webRTCFrameRate: <integer>
+                webRTCPortRangeMin: <integer>
+                webRTCPortRangeMax: <integer>
+                stunServerURI: <string>
+                turnServerUsername: <string>
+                turnServerCredential: <string>
+                webRTCTcpCandidatesEnabled: <boolean>
+                webRTCSdpSemantics: <string>
+                portAllocatorFlags: <integer>
+                encoderName: <string>
+                encoderPreset: <string>
+                encoderProfile: <string>
+                encoderLevel: <string>
+                encoderRc: <string>
+                encoderSpecific: <string>
+                encoderThreadCount: <integer>
+                encoderThreadType: <integer>
+                vp8EncoderSpeed: <integer>
+                vp8EncoderDeadline: <string>
+                vp8EncoderThreadCount: <integer>
+                previewHeight: <integer>
+                generatePreview: <boolean>
+                writeStatsToDatastore: <boolean>
+                encoderSelectionPreference: <string>
+                allowedPublisherCIDR: <string>
+                excessiveBandwidthValue: <integer>
+                excessiveBandwidthCallThreshold: <integer>
+                excessiveBandwithTryCountBeforeSwitchback: <integer>
+                excessiveBandwidthAlgorithmEnabled: <boolean>
+                packetLossDiffThresholdForSwitchback: <integer>
+                rttMeasurementDiffThresholdForSwitchback: <integer>
+                replaceCandidateAddrWithServerAddr: <boolean>
+                appName: <string>
+                encodingTimeout: <integer>
+                webRTCClientStartTimeoutMs: <integer>
+                defaultDecodersEnabled: <boolean>
+                updateTime: <long>
+                httpForwardingExtension: <string>
+                httpForwardingBaseURL: <string>
+                maxAnalyzeDurationMS: <integer>
+                disableIPv6Candidates: <boolean>
+                rtspPullTransportType: <string>
+                rtspTimeoutDurationMs: <integer>
+                maxFpsAccept: <integer>
+                maxResolutionAccept: <integer>
+                h264Enabled: <boolean>
+                vp8Enabled: <boolean>
+                h265Enabled: <boolean>
+                dataChannelEnabled: <boolean>
+                dataChannelPlayerDistribution: <string>
+                rtmpIngestBufferTimeMs: <long>
+                dataChannelWebHookURL: <string>
+                h265EncoderPreset: <string>
+                h265EncoderProfile: <string>
+                h265EncoderRc: <string>
+                h265EncoderSpecific: <string>
+                h265EncoderLevel: <string>
+                heightRtmpForwarding: <integer>
+                audioBitrateSFU: <integer>
+                dashMuxingEnabled: <boolean>
+                aacEncodingEnabled: <boolean>
+                gopSize: <integer>
+                constantRateFactor: <string>
+                webRTCViewerLimit: <integer>
+                toBeDeleted: <boolean>
+                pullWarFile: <boolean>
+                warFileOriginServerAddress: <string>
+                jwtSecretKey: <string>
+                jwtControlEnabled: <boolean>
+                ipFilterEnabled: <boolean>
+                ingestingStreamLimit: <integer>
+                webRTCKeyframeTime: <integer>
+                jwtStreamSecretKey: <string>
+                publishJwtControlEnabled: <boolean>
+                playJwtControlEnabled: <boolean>
+                dashHttpStreaming: <boolean>
+                s3StreamsFolderPath: <string>
+                s3PreviewsFolderPath: <string>
+                dashHttpEndpoint: <string>
+                hlsHttpEndpoint: <string>
+                forceDecoding: <boolean>
+                addOriginalMuxerIntoHLSPlaylist: <boolean>
+                s3RecordingEnabled: <boolean>
+                s3AccessKey: <string>
+                s3SecretKey: <string>
+                s3BucketName: <string>
+                s3RegionName: <string>
+                s3Endpoint: <string>
+                s3CacheControl: <string>
+                s3Permission: <string>
+                hlsEncryptionKeyInfoFile: <string>
+                jwksURL: <string>
+                forceAspectRatioInTranscoding: <boolean>
+                webhookAuthenticateURL: <string>
+                maxAudioTrackCount: <integer>
+                maxVideoTrackCount: <integer>
+                vodUploadFinishScript: <string>
+                contentSecurityPolicyHeaderValue: <string>
+                rtmpPlaybackEnabled: <boolean>
+                originEdgeIdleTimeout: <integer>
+                addDateTimeToHlsFileName: <boolean>
+                playWebRTCStreamOnceForEachSession: <boolean>
+                statsBasedABREnabled: <boolean>
+                abrDownScalePacketLostRatio: <float>
+                abrUpScalePacketLostRatio: <float>
+                abrUpScaleRTTMs: <integer>
+                abrUpScaleJitterMs: <integer>
+                clusterCommunicationKey: <string>
+                encoderSettings:
+                  - height: <integer>
+                    videoBitrate: <integer>
+                    audioBitrate: <integer>
+                    forceEncode: <boolean>
+                  - height: <integer>
+                    videoBitrate: <integer>
+                    audioBitrate: <integer>
+                    forceEncode: <boolean>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appname
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications/{appName}:
+    post:
+      tags:
+        - v2 > applications > {appName}
+      summary: Creates a new application with given name. It just creates default app
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appName
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    put:
+      tags:
+        - v2 > applications > {appName}
+      summary: >-
+        Creates a new application with given name. It supports uploading custom
+        WAR files
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: multipart/form-data
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appName
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > applications > {appName}
+      summary: Deletes application with the given name.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: deleteDB
+          in: query
+          schema:
+            type: string
+        - name: appName
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications/{appname}/reset:
+    post:
+      tags:
+        - v2 > applications > {appname} > reset
+      summary: >-
+        Resets the viewer counts and broadcasts statuses in the db. This can be
+        used after server crashes to recover db. It's not intended to use to
+        ignore the crash.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appname
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications:
+    get:
+      tags:
+        - v2 > applications
+      summary: >-
+        Gets the applications in the server. Returns the name of the
+        applications in JSON format.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/applications-info:
+    get:
+      tags:
+        - v2 > applications-info
+      summary: >-
+        Gets application info. Application info includes live stream count, vod
+        count and application name.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/authentication-status:
+    get:
+      tags:
+        - v2 > authentication-status
+      summary: Returns true if user is authenticated to call rest api operations.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/active-live-stream-count:
+    get:
+      tags:
+        - v2 > broadcasts > active-live-stream-count
+      summary: Return the active live streams
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                number: <long>
+  /v2/broadcasts/bulk:
+    delete:
+      tags:
+        - v2 > broadcasts > bulk
+      summary: >-
+        Delete multiple broadcasts from data store and stop if they are
+        broadcasting
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/conference-rooms/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > conference-rooms > list > {offset} > {size}
+      summary: Gets the conference room list from database
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          description: field to sort
+        - name: order_by
+          in: query
+          schema:
+            type: string
+          description: asc for Ascending, desc Descending order
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search parameter, returns specific items that contains search string
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - roomId: <string>
+                  startDate: <long>
+                  endDate: <long>
+                  roomStreamList:
+                    - <string>
+                    - <string>
+                  mode: <string>
+                  originAdress: <string>
+                - roomId: <string>
+                  startDate: <long>
+                  endDate: <long>
+                  roomStreamList:
+                    - <string>
+                    - <string>
+                  mode: <string>
+                  originAdress: <string>
+  /v2/broadcasts/conference-rooms/{roomId}:
+    get:
+      tags:
+        - v2 > broadcasts > conference-rooms > {roomId}
+      summary: Get conference room object
+      parameters:
+        - name: roomId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /v2/broadcasts/conference-rooms/{room_id}/add:
+    put:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id} > add
+      summary: >-
+        Adds the specified stream with streamId to the room.  Use PUT
+        conference-rooms/{room_id}/{streamId}
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: streamId
+          in: query
+          schema:
+            type: string
+          description: (Required) Stream id to add to the conference room
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/conference-rooms/{room_id}/delete:
+    put:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id} > delete
+      summary: >-
+        Deletes the specified stream correlated with streamId in the room. Use
+        DELETE /conference-rooms/{room_id}/{streamId}
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: streamId
+          in: query
+          schema:
+            type: string
+          description: (Required) Stream id to delete from the conference room
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/conference-rooms/{room_id}/room-info:
+    get:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id} > room-info
+      summary: Returns the streams Ids in the room.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: streamId
+          in: query
+          schema:
+            type: string
+          description: >-
+            If Stream Id is entered, that stream id will be isolated from the
+            result
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - <string>
+                - <string>
+  /v2/broadcasts/conference-rooms/{room_id}/{streamId}:
+    put:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id} > {streamId}
+      summary: 'Adds the specified stream with streamId to the room. '
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: streamId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id} > {streamId}
+      summary: 'Deletes the specified stream correlated with streamId in the room. Use '
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: streamId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/conference-rooms/{room_id}:
+    put:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id}
+      summary: Edits previously saved conference room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                roomId: <string>
+                startDate: <long>
+                endDate: <long>
+                roomStreamList:
+                  - <string>
+                  - <string>
+                mode: <string>
+                originAdress: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                roomId: <string>
+                startDate: <long>
+                endDate: <long>
+                roomStreamList:
+                  - <string>
+                  - <string>
+                mode: <string>
+                originAdress: <string>
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > conference-rooms > {room_id}
+      summary: >-
+        Deletes a conference room. The room id is key so if this is called with
+        the same room id then new room is overwritten to old one
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: room_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/conference-rooms:
+    post:
+      tags:
+        - v2 > broadcasts > conference-rooms
+      summary: >-
+        Creates a conference room with the parameters. The room name is key so
+        if this is called with the same room name then new room is overwritten
+        to old one
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                roomId: <string>
+                startDate: <long>
+                endDate: <long>
+                roomStreamList:
+                  - <string>
+                  - <string>
+                mode: <string>
+                originAdress: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                roomId: <string>
+                startDate: <long>
+                endDate: <long>
+                roomStreamList:
+                  - <string>
+                  - <string>
+                mode: <string>
+                originAdress: <string>
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/count/{search}:
+    get:
+      tags:
+        - v2 > broadcasts > count > {search}
+      summary: 'Get the number of broadcasts depending on the searched items '
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: search
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                number: <long>
+  /v2/broadcasts/count:
+    get:
+      tags:
+        - v2 > broadcasts > count
+      summary: Get the total number of broadcasts
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                number: <long>
+  /v2/broadcasts/create:
+    post:
+      tags:
+        - v2 > broadcasts > create
+      summary: >-
+        Creates a Broadcast, IP Camera or Stream Source and returns the full
+        broadcast object with rtmp address and other information. The different
+        between Broadcast and IP Camera or Stream Source is that Broadcast is
+        ingested by Ant Media ServerIP Camera or Str
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                streamId: <string>
+                status: created
+                playListStatus: finished
+                type: streamSource
+                publishType: RTMP
+                name: <string>
+                description: <string>
+                publish: <boolean>
+                date: <long>
+                plannedStartDate: <long>
+                plannedEndDate: <long>
+                duration: <long>
+                endPointList:
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                playListItemList:
+                  - streamUrl: <string>
+                    type: <string>
+                  - streamUrl: <string>
+                    type: <string>
+                publicStream: <boolean>
+                is360: <boolean>
+                listenerHookURL: <string>
+                category: <string>
+                ipAddr: <string>
+                username: <string>
+                password: <string>
+                quality: <string>
+                speed: <double>
+                streamUrl: <string>
+                originAdress: <string>
+                mp4Enabled: <integer>
+                webMEnabled: <integer>
+                expireDurationMS: <integer>
+                rtmpURL: <string>
+                zombi: <boolean>
+                pendingPacketSize: <integer>
+                hlsViewerCount: <integer>
+                dashViewerCount: <integer>
+                webRTCViewerCount: <integer>
+                rtmpViewerCount: <integer>
+                startTime: <long>
+                receivedBytes: <long>
+                bitrate: <long>
+                userAgent: <string>
+                latitude: <string>
+                longitude: <string>
+                altitude: <string>
+                mainTrackStreamId: <string>
+                subTrackStreamIds:
+                  - <string>
+                  - <string>
+                absoluteStartTimeMs: <long>
+                webRTCViewerLimit: <integer>
+                hlsViewerLimit: <integer>
+                dashViewerLimit: <integer>
+                subFolder: <string>
+                currentPlayIndex: <integer>
+                metaData: <string>
+                playlistLoopEnabled: <boolean>
+                updateTime: <long>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: autoStart
+          in: query
+          schema:
+            type: boolean
+          description: >-
+            Only effective if stream is IP Camera or Stream Source. If it's
+            true, it starts automatically pulling stream. Its value is false by
+            default
+          example: 'false'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                streamId: <string>
+                status: created
+                playListStatus: finished
+                type: streamSource
+                publishType: RTMP
+                name: <string>
+                description: <string>
+                publish: <boolean>
+                date: <long>
+                plannedStartDate: <long>
+                plannedEndDate: <long>
+                duration: <long>
+                endPointList:
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                playListItemList:
+                  - streamUrl: <string>
+                    type: <string>
+                  - streamUrl: <string>
+                    type: <string>
+                publicStream: <boolean>
+                is360: <boolean>
+                listenerHookURL: <string>
+                category: <string>
+                ipAddr: <string>
+                username: <string>
+                password: <string>
+                quality: <string>
+                speed: <double>
+                streamUrl: <string>
+                originAdress: <string>
+                mp4Enabled: <integer>
+                webMEnabled: <integer>
+                expireDurationMS: <integer>
+                rtmpURL: <string>
+                zombi: <boolean>
+                pendingPacketSize: <integer>
+                hlsViewerCount: <integer>
+                dashViewerCount: <integer>
+                webRTCViewerCount: <integer>
+                rtmpViewerCount: <integer>
+                startTime: <long>
+                receivedBytes: <long>
+                bitrate: <long>
+                userAgent: <string>
+                latitude: <string>
+                longitude: <string>
+                altitude: <string>
+                mainTrackStreamId: <string>
+                subTrackStreamIds:
+                  - <string>
+                  - <string>
+                absoluteStartTimeMs: <long>
+                webRTCViewerLimit: <integer>
+                hlsViewerLimit: <integer>
+                dashViewerLimit: <integer>
+                subFolder: <string>
+                currentPlayIndex: <integer>
+                metaData: <string>
+                playlistLoopEnabled: <boolean>
+                updateTime: <long>
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/filter-list/{offset}/{size}/{type}:
+    get:
+      tags:
+        - v2 > broadcasts > filter-list > {offset} > {size} > {type}
+      summary: >-
+        Returns filtered broadcast list according to type. It's useful for
+        getting IP Camera and Stream Sources from the whole list. If you want to
+        use sort mechanism, we recommend using Mongo DB.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          description: field to sort
+        - name: order_by
+          in: query
+          schema:
+            type: string
+          description: asc for Ascending, desc Descending order
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: type
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - streamId: <string>
+                  status: broadcasting
+                  playListStatus: created
+                  type: playlist
+                  publishType: RTMP
+                  name: <string>
+                  description: <string>
+                  publish: <boolean>
+                  date: <long>
+                  plannedStartDate: <long>
+                  plannedEndDate: <long>
+                  duration: <long>
+                  endPointList:
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                  playListItemList:
+                    - streamUrl: <string>
+                      type: <string>
+                    - streamUrl: <string>
+                      type: <string>
+                  publicStream: <boolean>
+                  is360: <boolean>
+                  listenerHookURL: <string>
+                  category: <string>
+                  ipAddr: <string>
+                  username: <string>
+                  password: <string>
+                  quality: <string>
+                  speed: <double>
+                  streamUrl: <string>
+                  originAdress: <string>
+                  mp4Enabled: <integer>
+                  webMEnabled: <integer>
+                  expireDurationMS: <integer>
+                  rtmpURL: <string>
+                  zombi: <boolean>
+                  pendingPacketSize: <integer>
+                  hlsViewerCount: <integer>
+                  dashViewerCount: <integer>
+                  webRTCViewerCount: <integer>
+                  rtmpViewerCount: <integer>
+                  startTime: <long>
+                  receivedBytes: <long>
+                  bitrate: <long>
+                  userAgent: <string>
+                  latitude: <string>
+                  longitude: <string>
+                  altitude: <string>
+                  mainTrackStreamId: <string>
+                  subTrackStreamIds:
+                    - <string>
+                    - <string>
+                  absoluteStartTimeMs: <long>
+                  webRTCViewerLimit: <integer>
+                  hlsViewerLimit: <integer>
+                  dashViewerLimit: <integer>
+                  subFolder: <string>
+                  currentPlayIndex: <integer>
+                  metaData: <string>
+                  playlistLoopEnabled: <boolean>
+                  updateTime: <long>
+                - streamId: <string>
+                  status: finished
+                  playListStatus: broadcasting
+                  type: playlist
+                  publishType: Pull
+                  name: <string>
+                  description: <string>
+                  publish: <boolean>
+                  date: <long>
+                  plannedStartDate: <long>
+                  plannedEndDate: <long>
+                  duration: <long>
+                  endPointList:
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                  playListItemList:
+                    - streamUrl: <string>
+                      type: <string>
+                    - streamUrl: <string>
+                      type: <string>
+                  publicStream: <boolean>
+                  is360: <boolean>
+                  listenerHookURL: <string>
+                  category: <string>
+                  ipAddr: <string>
+                  username: <string>
+                  password: <string>
+                  quality: <string>
+                  speed: <double>
+                  streamUrl: <string>
+                  originAdress: <string>
+                  mp4Enabled: <integer>
+                  webMEnabled: <integer>
+                  expireDurationMS: <integer>
+                  rtmpURL: <string>
+                  zombi: <boolean>
+                  pendingPacketSize: <integer>
+                  hlsViewerCount: <integer>
+                  dashViewerCount: <integer>
+                  webRTCViewerCount: <integer>
+                  rtmpViewerCount: <integer>
+                  startTime: <long>
+                  receivedBytes: <long>
+                  bitrate: <long>
+                  userAgent: <string>
+                  latitude: <string>
+                  longitude: <string>
+                  altitude: <string>
+                  mainTrackStreamId: <string>
+                  subTrackStreamIds:
+                    - <string>
+                    - <string>
+                  absoluteStartTimeMs: <long>
+                  webRTCViewerLimit: <integer>
+                  hlsViewerLimit: <integer>
+                  dashViewerLimit: <integer>
+                  subFolder: <string>
+                  currentPlayIndex: <integer>
+                  metaData: <string>
+                  playlistLoopEnabled: <boolean>
+                  updateTime: <long>
+  /v2/broadcasts/import-to-stalker:
+    post:
+      tags:
+        - v2 > broadcasts > import-to-stalker
+      summary: Import Live Streams to Stalker Portal
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > list > {offset} > {size}
+      summary: Gets the broadcast list from database. It returns max 50 items at a time
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: type_by
+          in: query
+          schema:
+            type: string
+          description: >-
+            Type of the stream. Possible values are "liveStream", "ipCamera",
+            "streamSource", "VoD"
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          description: Field to sort. Possible values are "name", "date", "status"
+        - name: order_by
+          in: query
+          schema:
+            type: string
+          description: '"asc" for Ascending, "desc" Descending order'
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search parameter, returns specific items that contains search string
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - streamId: <string>
+                  status: broadcasting
+                  playListStatus: created
+                  type: playlist
+                  publishType: RTMP
+                  name: <string>
+                  description: <string>
+                  publish: <boolean>
+                  date: <long>
+                  plannedStartDate: <long>
+                  plannedEndDate: <long>
+                  duration: <long>
+                  endPointList:
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                  playListItemList:
+                    - streamUrl: <string>
+                      type: <string>
+                    - streamUrl: <string>
+                      type: <string>
+                  publicStream: <boolean>
+                  is360: <boolean>
+                  listenerHookURL: <string>
+                  category: <string>
+                  ipAddr: <string>
+                  username: <string>
+                  password: <string>
+                  quality: <string>
+                  speed: <double>
+                  streamUrl: <string>
+                  originAdress: <string>
+                  mp4Enabled: <integer>
+                  webMEnabled: <integer>
+                  expireDurationMS: <integer>
+                  rtmpURL: <string>
+                  zombi: <boolean>
+                  pendingPacketSize: <integer>
+                  hlsViewerCount: <integer>
+                  dashViewerCount: <integer>
+                  webRTCViewerCount: <integer>
+                  rtmpViewerCount: <integer>
+                  startTime: <long>
+                  receivedBytes: <long>
+                  bitrate: <long>
+                  userAgent: <string>
+                  latitude: <string>
+                  longitude: <string>
+                  altitude: <string>
+                  mainTrackStreamId: <string>
+                  subTrackStreamIds:
+                    - <string>
+                    - <string>
+                  absoluteStartTimeMs: <long>
+                  webRTCViewerLimit: <integer>
+                  hlsViewerLimit: <integer>
+                  dashViewerLimit: <integer>
+                  subFolder: <string>
+                  currentPlayIndex: <integer>
+                  metaData: <string>
+                  playlistLoopEnabled: <boolean>
+                  updateTime: <long>
+                - streamId: <string>
+                  status: finished
+                  playListStatus: broadcasting
+                  type: playlist
+                  publishType: Pull
+                  name: <string>
+                  description: <string>
+                  publish: <boolean>
+                  date: <long>
+                  plannedStartDate: <long>
+                  plannedEndDate: <long>
+                  duration: <long>
+                  endPointList:
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                    - status: <string>
+                      type: <string>
+                      rtmpUrl: <string>
+                      endpointServiceId: <string>
+                  playListItemList:
+                    - streamUrl: <string>
+                      type: <string>
+                    - streamUrl: <string>
+                      type: <string>
+                  publicStream: <boolean>
+                  is360: <boolean>
+                  listenerHookURL: <string>
+                  category: <string>
+                  ipAddr: <string>
+                  username: <string>
+                  password: <string>
+                  quality: <string>
+                  speed: <double>
+                  streamUrl: <string>
+                  originAdress: <string>
+                  mp4Enabled: <integer>
+                  webMEnabled: <integer>
+                  expireDurationMS: <integer>
+                  rtmpURL: <string>
+                  zombi: <boolean>
+                  pendingPacketSize: <integer>
+                  hlsViewerCount: <integer>
+                  dashViewerCount: <integer>
+                  webRTCViewerCount: <integer>
+                  rtmpViewerCount: <integer>
+                  startTime: <long>
+                  receivedBytes: <long>
+                  bitrate: <long>
+                  userAgent: <string>
+                  latitude: <string>
+                  longitude: <string>
+                  altitude: <string>
+                  mainTrackStreamId: <string>
+                  subTrackStreamIds:
+                    - <string>
+                    - <string>
+                  absoluteStartTimeMs: <long>
+                  webRTCViewerLimit: <integer>
+                  hlsViewerLimit: <integer>
+                  dashViewerLimit: <integer>
+                  subFolder: <string>
+                  currentPlayIndex: <integer>
+                  metaData: <string>
+                  playlistLoopEnabled: <boolean>
+                  updateTime: <long>
+  /v2/broadcasts/onvif-devices:
+    get:
+      tags:
+        - v2 > broadcasts > onvif-devices
+      summary: >-
+        Get Discovered ONVIF IP Cameras, this service perform a discovery inside
+        of internal network and get automatically  ONVIF enabled camera
+        information
+      description: Notes here
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/total-broadcast-statistics:
+    get:
+      tags:
+        - v2 > broadcasts > total-broadcast-statistics
+      summary: >-
+        Get the total broadcast live statistics total HLS watcher count, total
+        WebRTC watcher count
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalRTMPWatchersCount: <integer>
+                totalHLSWatchersCount: <integer>
+                totalWebRTCWatchersCount: <integer>
+                totalDASHWatchersCount: <integer>
+  /v2/broadcasts/validate-token:
+    post:
+      tags:
+        - v2 > broadcasts > validate-token
+      summary: >-
+        Perform validation of token for requested stream. If validated, success
+        field is true, not validated success field false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tokenId: <string>
+                streamId: <string>
+                expireDate: <long>
+                type: <string>
+                roomId: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/webrtc-receive-low-level-stats:
+    get:
+      tags:
+        - v2 > broadcasts > webrtc-receive-low-level-stats
+      summary: Get WebRTC Low Level receive stats in general
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                audioSendStats:
+                  audioPacketsSent: <long>
+                  audioBytesSent: <integer>
+                  audioPacketsPerSecond: <long>
+                  audioBytesSentPerSecond: <integer>
+                  timeMs: <long>
+                videoSendStats:
+                  videoFirCount: <long>
+                  videoPliCount: <long>
+                  videoNackCount: <long>
+                  videoPacketsSent: <long>
+                  videoFramesEncoded: <long>
+                  videoBytesSent: <integer>
+                  videoPacketsSentPerSecond: <long>
+                  videoBytesSentPerSecond: <integer>
+                  videoFramesEncodedPerSecond: <long>
+                  timeMs: <long>
+  /v2/broadcasts/webrtc-send-low-level-stats:
+    get:
+      tags:
+        - v2 > broadcasts > webrtc-send-low-level-stats
+      summary: Get WebRTC Low Level Send stats in general
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                audioSendStats:
+                  audioPacketsSent: <long>
+                  audioBytesSent: <integer>
+                  audioPacketsPerSecond: <long>
+                  audioBytesSentPerSecond: <integer>
+                  timeMs: <long>
+                videoSendStats:
+                  videoFirCount: <long>
+                  videoPliCount: <long>
+                  videoNackCount: <long>
+                  videoPacketsSent: <long>
+                  videoFramesEncoded: <long>
+                  videoBytesSent: <integer>
+                  videoPacketsSentPerSecond: <long>
+                  videoBytesSentPerSecond: <integer>
+                  videoFramesEncodedPerSecond: <long>
+                  timeMs: <long>
+  /v2/broadcasts/webrtc-viewers/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > webrtc-viewers > list > {offset} > {size}
+      summary: get Web RTC Viewer List
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          description: field to sort
+        - name: order_by
+          in: query
+          schema:
+            type: string
+          description: asc for Ascending, desc Descending order
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search parameter, returns specific items that contains search string
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - viewerId: <string>
+                  streamId: <string>
+                  edgeAddress: <string>
+                - viewerId: <string>
+                  streamId: <string>
+                  edgeAddress: <string>
+  /v2/broadcasts/webrtc-viewers/{webrtc-viewer-id}/stop:
+    post:
+      tags:
+        - v2 > broadcasts > webrtc-viewers > {webrtc-viewer-id} > stop
+      summary: Stop player with a specified id
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: webrtc-viewer-id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/broadcast-statistics:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > broadcast-statistics
+      summary: >-
+        Get the broadcast live statistics total RTMP watcher count, total HLS
+        watcher count, total WebRTC watcher count
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                totalRTMPWatchersCount: <integer>
+                totalHLSWatchersCount: <integer>
+                totalWebRTCWatchersCount: <integer>
+                totalDASHWatchersCount: <integer>
+  /v2/broadcasts/{id}/data:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > data
+      summary: >-
+        Send stream participants a message through Data Channel in a WebRTC
+        stream
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/detections/count:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > detections > count
+      summary: Get total number of detected objects
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /v2/broadcasts/{id}/detections/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > detections > {offset} > {size}
+      summary: Get detected objects from the stream based on offset and size
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - objectName: <string>
+                  probability: <float>
+                  detectionTime: <long>
+                  imageId: <string>
+                  minX: <double>
+                  minY: <double>
+                  maxX: <double>
+                  maxY: <double>
+                - objectName: <string>
+                  probability: <float>
+                  detectionTime: <long>
+                  imageId: <string>
+                  minX: <double>
+                  minY: <double>
+                  maxX: <double>
+                  maxY: <double>
+  /v2/broadcasts/{id}/endpoint:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > endpoint
+      summary: add Endpoint V2
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: rtmpUrl
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) RTMP url of the endpoint that stream will be republished.
+            If required, please encode the URL
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > endpoint
+      summary: remove Endpoint
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: rtmpUrl
+          in: query
+          schema:
+            type: string
+          description: (Required) RTMP url of the endpoint that will be stopped.
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/ip-camera/device-profiles:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > ip-camera > device-profiles
+      summary: Get The Profile List for an ONVIF IP Cameras
+      description: Notes here
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/ip-camera/move:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > ip-camera > move
+      summary: >-
+        Move IP Camera. It support continuous, relative and absolute move. By
+        default it's relative move.Movement parameters should be given according
+        to movement type. Generally here are the values For Absolute move, value
+        X and value Y is between -1.0f and 1.0f
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: valueX
+          in: query
+          schema:
+            type: string
+          description: >-
+            Movement in X direction. If not specified, it's assumed to be zero.
+            Valid ranges between -1.0f and 1.0f for all movements 
+        - name: valueY
+          in: query
+          schema:
+            type: string
+          description: >-
+            Movement in Y direction. If not specified, it's assumed to be zero.
+            Valid ranges between -1.0f and 1.0f for all movements 
+        - name: valueZ
+          in: query
+          schema:
+            type: string
+          description: >-
+            Movement in Zoom. If not specified, it's assumed to be zero. Valid
+            ranges for relative and continous move is between -1.0f and 1.0f.
+            For absolute move between 0.0f and 1.0f 
+        - name: movement
+          in: query
+          schema:
+            type: string
+          description: >-
+            Movement type. It can be absolute, relative or continuous. If not
+            specified, it's relative
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/ip-camera/stop-move:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > ip-camera > stop-move
+      summary: Stop move for IP Camera.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/jwt-token:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > jwt-token
+      summary: >-
+        Generates JWT token for specified stream. It's not required to let the
+        server generate JWT. Generally JWT tokens should be generated on the
+        client side.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: expireDate
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) The expire time of the token. It's in unix timestamp
+            seconds.
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: '(Required) Type of the JWT token. It may be play or publish '
+        - name: roomId
+          in: query
+          schema:
+            type: string
+          description: 'Room Id that token belongs to. It''s not mandatory '
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                tokenId: <string>
+                streamId: <string>
+                expireDate: <long>
+                type: <string>
+                roomId: <string>
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/recording/{recording-status}:
+    put:
+      tags:
+        - v2 > broadcasts > {id} > recording > {recording-status}
+      summary: >-
+        Set stream specific recording setting, this setting overrides general
+        Mp4 and WebM Muxing Setting
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: recordType
+          in: query
+          schema:
+            type: string
+          description: 'Record type: ''mp4'' or ''webm''. It''s optional parameter.'
+        - name: resolutionHeight
+          in: query
+          schema:
+            type: string
+          description: 'Resolution height of the broadcast that is wanted to record. '
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: recording-status
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/rtmp-endpoint:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > rtmp-endpoint
+      summary: >-
+        Adds a third party rtmp end point to the stream. It supports adding
+        after broadcast is started. Resolution can be specified to send a
+        specific adaptive resolution. If an url is already added to a stream,
+        trying to add the same rtmp url will return false.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: <string>
+                type: <string>
+                rtmpUrl: <string>
+                endpointServiceId: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: resolutionHeight
+          in: query
+          schema:
+            type: string
+          description: >-
+            Resolution height of the broadcast that is wanted to send to the
+            RTMP endpoint. 
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > rtmp-endpoint
+      summary: >-
+        Remove third pary rtmp end point from the stream. For the stream that is
+        broadcasting, it will stop immediately
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: endpointServiceId
+          in: query
+          schema:
+            type: string
+          description: (Required) RTMP url of the endpoint that will be stopped.
+        - name: resolutionHeight
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) Resolution specifier if endpoint has been added with
+            resolution. Only applicable if user added RTMP endpoint with a
+            resolution speficier. Otherwise won't work and won't remove the
+            endpoint.
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/rtmp-to-webrtc-stats:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > rtmp-to-webrtc-stats
+      summary: Get RTMP to WebRTC path stats in general
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                streamId: <string>
+                encoderCount: <integer>
+                totalVideoIngestTime: <long>
+                totalIngestedVideoPacketCount: <long>
+                totalVideoDecodeTime: <long>
+                totalDecodedVideoFrameCount: <long>
+                totalVideoEncodeQueueTime: <long>
+                totalVideoEncodeTime: <long>
+                totalEncodedVideoPacketCount: <long>
+                totalVideoDeliveryTime: <long>
+                totalDeliveredVideoPacketCount: <long>
+                absoluteTotalIngestTime: <long>
+                absoluteTimeMs: <long>
+                absouteTotalLatencyUntilRTPPacketizingTimeMs: <long>
+                frameId: <long>
+                captureTimeMs: <long>
+  /v2/broadcasts/{id}/start:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > start
+      summary: 'Start streaming sources(IP Cameras, Stream Sources, PlayLists) '
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/stop:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > stop
+      summary: >-
+        Stop streaming for the active stream. It both stops ingested(RTMP,
+        WebRTC) or pulled stream sources (IP Cameras and Stream Sources)
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/stream-info:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > stream-info
+      summary: >-
+        Returns the stream info(width, height, bitrates and video codec) of the
+        stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - videoHeight: <integer>
+                  videoWidth: <integer>
+                  videoBitrate: <integer>
+                  audioBitrate: <integer>
+                  videoCodec: H265
+                - videoHeight: <integer>
+                  videoWidth: <integer>
+                  videoBitrate: <integer>
+                  audioBitrate: <integer>
+                  videoCodec: PNG
+  /v2/broadcasts/{id}/subscriber-stats/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > subscriber-stats > list > {offset} > {size}
+      summary: Get the all subscriber statistics of the requested stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - subscriberId: <string>
+                  streamId: <string>
+                  connectionEvents:
+                    - timestamp: <long>
+                      eventType: <string>
+                      instanceIP: <string>
+                      type: <string>
+                    - timestamp: <long>
+                      eventType: <string>
+                      instanceIP: <string>
+                      type: <string>
+                  avgVideoBitrate: <long>
+                  avgAudioBitrate: <long>
+                - subscriberId: <string>
+                  streamId: <string>
+                  connectionEvents:
+                    - timestamp: <long>
+                      eventType: <string>
+                      instanceIP: <string>
+                      type: <string>
+                    - timestamp: <long>
+                      eventType: <string>
+                      instanceIP: <string>
+                      type: <string>
+                  avgVideoBitrate: <long>
+                  avgAudioBitrate: <long>
+  /v2/broadcasts/{id}/subscribers/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > subscribers > list > {offset} > {size}
+      summary: Get the all subscribers of the requested stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - subscriberId: <string>
+                  type: <string>
+                  connected: <boolean>
+                  currentConcurrentConnections: <integer>
+                  concurrentConnectionsLimit: <integer>
+                - subscriberId: <string>
+                  type: <string>
+                  connected: <boolean>
+                  currentConcurrentConnections: <integer>
+                  concurrentConnectionsLimit: <integer>
+  /v2/broadcasts/{id}/subscribers/{sid}:
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > subscribers > {sid}
+      summary: Delete specific subscriber from data store for selected stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: sid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/subscribers:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > subscribers
+      summary: 'Add Subscriber to the requested stream '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                subscriberId: <string>
+                type: <string>
+                connected: <boolean>
+                currentConcurrentConnections: <integer>
+                concurrentConnectionsLimit: <integer>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > subscribers
+      summary: ' Removes all subscriber related with the requested stream'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/subtrack:
+    post:
+      tags:
+        - v2 > broadcasts > {id} > subtrack
+      summary: Add a subtrack to a main track (broadcast).
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: (Required) Subtrack Stream Id
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > subtrack
+      summary: Delete a subtrack from a main track (broadcast).
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: (Required) Subtrack Stream Id
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/token:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > token
+      summary: Generates random one-time token for specified stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: expireDate
+          in: query
+          schema:
+            type: string
+          description: >-
+            (Required) The expire time of the token. It's in unix timestamp
+            seconds
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: '(Required) Type of the token. It may be play or publish '
+        - name: roomId
+          in: query
+          schema:
+            type: string
+          description: 'Room Id that token belongs to. It''s not mandatory '
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                tokenId: <string>
+                streamId: <string>
+                expireDate: <long>
+                type: <string>
+                roomId: <string>
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}/tokens/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > broadcasts > {id} > tokens > list > {offset} > {size}
+      summary: Get the all tokens of requested stream
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - tokenId: <string>
+                  streamId: <string>
+                  expireDate: <long>
+                  type: <string>
+                  roomId: <string>
+                - tokenId: <string>
+                  streamId: <string>
+                  expireDate: <long>
+                  type: <string>
+                  roomId: <string>
+  /v2/broadcasts/{id}/tokens:
+    delete:
+      tags:
+        - v2 > broadcasts > {id} > tokens
+      summary: ' Removes all tokens related with requested stream'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{id}:
+    get:
+      tags:
+        - v2 > broadcasts > {id}
+      summary: Get broadcast object
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+    put:
+      tags:
+        - v2 > broadcasts > {id}
+      summary: >-
+        Updates the Broadcast objects fields if it's not null. The updated
+        fields are as follows: name, description, userName, password, IP
+        address, streamUrl of the broadcast. It also updates the social
+        endpoints
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                streamId: <string>
+                status: created
+                playListStatus: finished
+                type: streamSource
+                publishType: RTMP
+                name: <string>
+                description: <string>
+                publish: <boolean>
+                date: <long>
+                plannedStartDate: <long>
+                plannedEndDate: <long>
+                duration: <long>
+                endPointList:
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                  - status: <string>
+                    type: <string>
+                    rtmpUrl: <string>
+                    endpointServiceId: <string>
+                playListItemList:
+                  - streamUrl: <string>
+                    type: <string>
+                  - streamUrl: <string>
+                    type: <string>
+                publicStream: <boolean>
+                is360: <boolean>
+                listenerHookURL: <string>
+                category: <string>
+                ipAddr: <string>
+                username: <string>
+                password: <string>
+                quality: <string>
+                speed: <double>
+                streamUrl: <string>
+                originAdress: <string>
+                mp4Enabled: <integer>
+                webMEnabled: <integer>
+                expireDurationMS: <integer>
+                rtmpURL: <string>
+                zombi: <boolean>
+                pendingPacketSize: <integer>
+                hlsViewerCount: <integer>
+                dashViewerCount: <integer>
+                webRTCViewerCount: <integer>
+                rtmpViewerCount: <integer>
+                startTime: <long>
+                receivedBytes: <long>
+                bitrate: <long>
+                userAgent: <string>
+                latitude: <string>
+                longitude: <string>
+                altitude: <string>
+                mainTrackStreamId: <string>
+                subTrackStreamIds:
+                  - <string>
+                  - <string>
+                absoluteStartTimeMs: <long>
+                webRTCViewerLimit: <integer>
+                hlsViewerLimit: <integer>
+                dashViewerLimit: <integer>
+                subFolder: <string>
+                currentPlayIndex: <integer>
+                metaData: <string>
+                playlistLoopEnabled: <boolean>
+                updateTime: <long>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > broadcasts > {id}
+      summary: Delete broadcast from data store and stop if it's broadcasting
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{streamId}/ip-camera-error:
+    get:
+      tags:
+        - v2 > broadcasts > {streamId} > ip-camera-error
+      summary: >-
+        Get IP Camera Error after connection failure. If returns true, it means
+        there is an error. If returns false, there is no error
+      description: Notes here
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: streamId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/broadcasts/{stream_id}/webrtc-client-stats/{offset}/{size}:
+    get:
+      tags:
+        - >-
+          v2 > broadcasts > {stream_id} > webrtc-client-stats > {offset} >
+          {size}
+      summary: >-
+        Get WebRTC Client Statistics such as : Audio bitrate, Video bitrate,
+        Target bitrate, Video Sent Period etc.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: stream_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - measuredBitrate: <integer>
+                  sendBitrate: <integer>
+                  videoFrameSendPeriod: <double>
+                  audioFrameSendPeriod: <double>
+                  clientId: <integer>
+                  videoPacketCount: <long>
+                  audioPacketCount: <long>
+                  videoSentStats:
+                    videoFirCount: <long>
+                    videoPliCount: <long>
+                    videoNackCount: <long>
+                    videoPacketsSent: <long>
+                    videoFramesEncoded: <long>
+                    videoBytesSent: <integer>
+                    videoPacketsSentPerSecond: <long>
+                    videoBytesSentPerSecond: <integer>
+                    videoFramesEncodedPerSecond: <long>
+                    timeMs: <long>
+                  audioSentStats:
+                    audioPacketsSent: <long>
+                    audioBytesSent: <integer>
+                    audioPacketsPerSecond: <long>
+                    audioBytesSentPerSecond: <integer>
+                    timeMs: <long>
+                  clientInfo: <string>
+                  clientIp: <string>
+                - measuredBitrate: <integer>
+                  sendBitrate: <integer>
+                  videoFrameSendPeriod: <double>
+                  audioFrameSendPeriod: <double>
+                  clientId: <integer>
+                  videoPacketCount: <long>
+                  audioPacketCount: <long>
+                  videoSentStats:
+                    videoFirCount: <long>
+                    videoPliCount: <long>
+                    videoNackCount: <long>
+                    videoPacketsSent: <long>
+                    videoFramesEncoded: <long>
+                    videoBytesSent: <integer>
+                    videoPacketsSentPerSecond: <long>
+                    videoBytesSentPerSecond: <integer>
+                    videoFramesEncodedPerSecond: <long>
+                    timeMs: <long>
+                  audioSentStats:
+                    audioPacketsSent: <long>
+                    audioBytesSent: <integer>
+                    audioPacketsPerSecond: <long>
+                    audioBytesSentPerSecond: <integer>
+                    timeMs: <long>
+                  clientInfo: <string>
+                  clientIp: <string>
+  /v2/cluster-mode-status:
+    get:
+      tags:
+        - v2 > cluster-mode-status
+      summary: >-
+        Returns the server mode. If it is in the cluster mode, result will be
+        true.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/cluster/node-count:
+    get:
+      tags:
+        - v2 > cluster > node-count
+      summary: get Node Count
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: '*/*'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: '*/*'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                  "number": "<long>"
+                }
+  /v2/cluster/node/{id}:
+    delete:
+      tags:
+        - v2 > cluster > node > {id}
+      summary: delete Node
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/cluster/nodes/{offset}/{size}:
+    get:
+      tags:
+        - v2 > cluster > nodes > {offset} > {size}
+      summary: get Node List
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: <string>
+                  ip: <string>
+                  lastUpdateTime: <long>
+                  memory: <string>
+                  cpu: <string>
+                  status: <string>
+                - id: <string>
+                  ip: <string>
+                  lastUpdateTime: <long>
+                  memory: <string>
+                  cpu: <string>
+                  status: <string>
+  /v2/cpu-status:
+    get:
+      tags:
+        - v2 > cpu-status
+      summary: Returns system cpu load, process cpu load and process cpu time.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/enterprise-edition:
+    get:
+      tags:
+        - v2 > enterprise-edition
+      summary: Returns true if the server is enterprise edition.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/file-system-status:
+    get:
+      tags:
+        - v2 > file-system-status
+      summary: >-
+        Gets system file status. Returns usable space, total space, available
+        space and in use space.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/first-login-status:
+    get:
+      tags:
+        - v2 > first-login-status
+      summary: >-
+        Checks first login status. If server being logged in first time, it
+        returns true, otherwise false.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/gpu-status:
+    get:
+      tags:
+        - v2 > gpu-status
+      summary: >-
+        Gets GPU information. Returns whether you have GPU or not. If yes,
+        information of the gpu and the number of total gpus.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/heap-dump:
+    get:
+      tags:
+        - v2 > heap-dump
+      summary: Returns heap dump.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/octet-stream
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/octet-stream
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                  "success": "<boolean>",
+                  "message": "<string>",
+                  "dataId": "<string>",
+                  "errorId": "<integer>"
+                }
+  /v2/jvm-memory-status:
+    get:
+      tags:
+        - v2 > jvm-memory-status
+      summary: >-
+        Returns JVM memory informations. Max, total, free, in-use and available
+        processors are returned.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/last-licence-status:
+    get:
+      tags:
+        - v2 > last-licence-status
+      summary: >-
+        Returns the last checked license status. Includes license ID, owner,
+        start date, end date, type and license count.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/licence-status:
+    get:
+      tags:
+        - v2 > licence-status
+      summary: >-
+        Returns license status. Includes license ID, status, owner, start date,
+        end date, type and license count.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: key
+          in: query
+          schema:
+            type: string
+          description: (Required) License key
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/live-clients-size:
+    get:
+      tags:
+        - v2 > live-clients-size
+      summary: Returns total number of live streams and total number of connections.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/liveness:
+    get:
+      tags:
+        - v2 > liveness
+      summary: Returns the hostname to check liveness with HTTP type healthcheck.
+      responses:
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /v2/log-file/{offsetSize}/{charSize}:
+    get:
+      tags:
+        - v2 > log-file > {offsetSize} > {charSize}
+      summary: >-
+        Gets log file. Char size of the log, offset or log type can be
+        specified.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: logType
+          in: query
+          schema:
+            type: string
+          description: (Required) Log type. ERROR can be used to get only error logs
+        - name: offsetSize
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: charSize
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/server-settings:
+    get:
+      tags:
+        - v2 > server-settings
+      summary: >-
+        Returns the server settings. From log level to measurement period of
+        cpu, license key of the server host address,ssl configuration and many
+        more settings are returned at once.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    post:
+      tags:
+        - v2 > server-settings
+      summary: >-
+        Changes server settings. Sets Server Name, license key, market build
+        status and node group.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                allowedDashboardCIDR: <string>
+                hostAddress: <string>
+                serverName: <string>
+                licenceKey: <string>
+                buildForMarket: <boolean>
+                marketplace: <string>
+                logLevel: <string>
+                nativeLogLevel: <string>
+                heartbeatEnabled: <boolean>
+                useGlobalIp: <boolean>
+                proxyAddress: <string>
+                nodeGroup: <string>
+                cpuMeasurementPeriodMs: <integer>
+                cpuMeasurementWindowSize: <integer>
+                defaultHttpPort: <integer>
+                jwtServerControlEnabled: <boolean>
+                jwtServerSecretKey: <string>
+                jwksURL: <string>
+                originServerPort: <integer>
+                srtPort: <integer>
+                sslEnabled: <boolean>
+                rtmpPort: <integer>
+                serverStatusWebHookURL: <string>
+                hostAddressFromEnvironment: <string>
+                webRTCLogLevel: LS_WARNING
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/server-time:
+    get:
+      tags:
+        - v2 > server-time
+      summary: >-
+        Gets server time. Returns server uptime and start time in milliseconds
+        in JSON.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/shutdown-proper-status:
+    get:
+      tags:
+        - v2 > shutdown-proper-status
+      summary: >-
+        Checks whether application or applications have shutdown properly or
+        not.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appNames
+          in: query
+          schema:
+            type: string
+          description: (Required) Application name
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /v2/shutdown-properly:
+    get:
+      tags:
+        - v2 > shutdown-properly
+      summary: Set application or applications shutdown property to true
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: appNames
+          in: query
+          schema:
+            type: string
+          description: (Required) Application name
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/ssl-settings:
+    post:
+      tags:
+        - v2 > ssl-settings
+      summary: >-
+        Changes ssl settings. Sets ssl configuration type. After this method is
+        called, server will be restarted.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: domain
+          in: query
+          schema:
+            type: string
+          description: (Required) SSL settings
+        - name: type
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/support/request:
+    post:
+      tags:
+        - v2 > support > request
+      summary: send Support Request
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/system-memory-status:
+    get:
+      tags:
+        - v2 > system-memory-status
+      summary: >-
+        Gets system memory status. Returns Virtual, total physical, available
+        physical, currently in use, total swap space, available swap space and
+        in use swap space. 
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/system-resources:
+    get:
+      tags:
+        - v2 > system-resources
+      summary: >-
+        Gets system resource information. Returns number of total live streams,
+        cpu usage, system information, jvm information, file system information,
+        license status, gpu status etc. Basically returns most of the
+        information in one package.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/system-status:
+    get:
+      tags:
+        - v2 > system-status
+      summary: >-
+        Returns system information which includes many information such as JVM
+        memory, OS information, Available File Space, Physical memory
+        informations in detail.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/thread-dump:
+    get:
+      tags:
+        - v2 > thread-dump
+      summary: >-
+        Gets thread dump in json format. Includes very detailed information such
+        as thread name, thread id, blocked time of thread, thread state and many
+        more information are returned.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/threads:
+    get:
+      tags:
+        - v2 > threads
+      summary: >-
+        Returns processor's thread information. Includes number of dead locked
+        threads, thread count, and thread peek count.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/user-list:
+    get:
+      tags:
+        - v2 > user-list
+      summary: Returns user list in the server management panel
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: []
+  /v2/users/authenticate:
+    post:
+      tags:
+        - v2 > users > authenticate
+      summary: >-
+        Authenticates user with given username and password. Requires user
+        object to authenticate.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <string>
+                userType: ADMIN
+                scope: <string>
+                fullName: <string>
+                firstName: <string>
+                lastName: <string>
+                picture: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/users/initial:
+    post:
+      tags:
+        - v2 > users > initial
+      summary: >-
+        Creates initial user. This is a one time scenario when initial user
+        creation required and shouldn't be used otherwise. User object is
+        required and can't be null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <string>
+                userType: ADMIN
+                scope: <string>
+                fullName: <string>
+                firstName: <string>
+                lastName: <string>
+                picture: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/users/password:
+    post:
+      tags:
+        - v2 > users > password
+      summary: Changes the given user's password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <string>
+                userType: ADMIN
+                scope: <string>
+                fullName: <string>
+                firstName: <string>
+                lastName: <string>
+                picture: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/users/{usermail}/blocked:
+    get:
+      tags:
+        - v2 > users > {usermail} > blocked
+      summary: >-
+        Returns if user is blocked. User is blocked for a specific time if there
+        are login attempts
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: usermail
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/users/{username}:
+    delete:
+      tags:
+        - v2 > users > {username}
+      summary: Delete the user from the server management panel's user list
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: username
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: []
+  /v2/users:
+    post:
+      tags:
+        - v2 > users
+      summary: >-
+        Creates a new user. If user object is null or if user is not
+        authenticated, new user won't be created.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <string>
+                userType: ADMIN
+                scope: <string>
+                fullName: <string>
+                firstName: <string>
+                lastName: <string>
+                picture: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    put:
+      tags:
+        - v2 > users
+      summary: >-
+        Edit the user in the server management panel's user list. It can change
+        password or user type(admin, read only) 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: <string>
+                userType: ADMIN
+                scope: <string>
+                fullName: <string>
+                firstName: <string>
+                lastName: <string>
+                picture: <string>
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: []
+  /v2/version:
+    get:
+      tags:
+        - v2 > version
+      summary: Returns the version of Ant Media Server.
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/bulk:
+    delete:
+      tags:
+        - v2 > vods > bulk
+      summary: Delete bulk VoD Files based on Vod Id
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/count/{search}:
+    get:
+      tags:
+        - v2 > vods > count > {search}
+      summary: Get the partial number of VoDs depending on the searched items
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: search
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /v2/vods/count:
+    get:
+      tags:
+        - v2 > vods > count
+      summary: Get the total number of VoDs
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /v2/vods/create:
+    post:
+      tags:
+        - v2 > vods > create
+      summary: Upload external VoD file to Ant Media Server
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: multipart/form-data
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: (Required) the name of the VoD File
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/directory:
+    post:
+      tags:
+        - v2 > vods > directory
+      summary: Import VoD files from a directory and make it streamable.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: directory
+          in: query
+          schema:
+            type: string
+          description: >-
+            the full path of the directory that VoD files will be imported to
+            datastore and linked to the streams
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+    delete:
+      tags:
+        - v2 > vods > directory
+      summary: >-
+        Unlinks VoD path from streams directory and delete the database record.
+        It does not delete the files. It only unlinks folder and delete database
+        records
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: directory
+          in: query
+          schema:
+            type: string
+          description: >-
+            the full path of the directory that imported VoD files will be
+            deleted from database. 
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/import-to-stalker:
+    post:
+      tags:
+        - v2 > vods > import-to-stalker
+      summary: Import VoDs to Stalker Portal
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/list/{offset}/{size}:
+    get:
+      tags:
+        - v2 > vods > list > {offset} > {size}
+      summary: ' Get the VoD list from database. It returns 50 items at max. You can use offset value to get result page by page '
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          description: Field to sort. Possible values are "name", "date"
+        - name: order_by
+          in: query
+          schema:
+            type: string
+          description: '"asc" for Ascending, "desc" Descening order'
+        - name: streamId
+          in: query
+          schema:
+            type: string
+          description: Id of the stream to filter the results by stream id
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Search string
+        - name: offset
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: size
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - streamName: <string>
+                  vodName: <string>
+                  streamId: <string>
+                  creationDate: <long>
+                  startTime: <long>
+                  duration: <long>
+                  fileSize: <long>
+                  filePath: <string>
+                  vodId: <string>
+                  type: <string>
+                  previewFilePath: <string>
+                - streamName: <string>
+                  vodName: <string>
+                  streamId: <string>
+                  creationDate: <long>
+                  startTime: <long>
+                  duration: <long>
+                  fileSize: <long>
+                  filePath: <string>
+                  vodId: <string>
+                  type: <string>
+                  previewFilePath: <string>
+  /v2/vods/synch-user-vod-list:
+    post:
+      tags:
+        - v2 > vods > synch-user-vod-list
+      summary: >-
+        Deprecated. Use import VoDs. Synchronize VoD Folder and add them to VoD
+        database if any file exist and create symbolic links to that folder
+      description: Notes here
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
+  /v2/vods/{id}:
+    get:
+      tags:
+        - v2 > vods > {id}
+      summary: VoD file from database
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                streamName: <string>
+                vodName: <string>
+                streamId: <string>
+                creationDate: <long>
+                startTime: <long>
+                duration: <long>
+                fileSize: <long>
+                filePath: <string>
+                vodId: <string>
+                type: <string>
+                previewFilePath: <string>
+    delete:
+      tags:
+        - v2 > vods > {id}
+      summary: Delete specific VoD File
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: <boolean>
+                message: <string>
+                dataId: <string>
+                errorId: <integer>
